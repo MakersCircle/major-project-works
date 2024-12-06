@@ -2,7 +2,9 @@
 datasets/*
 !datasets/README.md
 
-
+# Models
+models/*
+!models/README.md
 
 #General gitignore template
 
