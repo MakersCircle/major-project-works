@@ -10,6 +10,9 @@ Ensure you have Conda installed. Create a new environment with Python 3.10:
 ```bash
 conda create -n accident-anticipation python=3.10
 ```
+```bash
+conda activate accident-anticipation
+```
 If you're using PyCharm, select this environment as the project's interpreter.
 
 ### **3. Install PyTorch and Dependencies**
@@ -33,4 +36,4 @@ Do not push the following to the repository:
 
 To prevent accidental uploads, ensure these files are listed in the [`.gitignore`](.gitignore) file.
 
-### **Begin writing code in the [src](src/) directory.**
+### **Begin writing code in the [src](src) directory.**
