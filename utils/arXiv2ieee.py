@@ -56,15 +56,7 @@ def main():
     #       url={https://arxiv.org/abs/2304.01168},
     # }"""
 
-    bibtex = """@misc{liao2024realtimeaccidentanticipationautonomous,
-      title={Real-time Accident Anticipation for Autonomous Driving Through Monocular Depth-Enhanced 3D Modeling}, 
-      author={Haicheng Liao and Yongkang Li and Chengyue Wang and Songning Lai and Zhenning Li and Zilin Bian and Jaeyoung Lee and Zhiyong Cui and Guohui Zhang and Chengzhong Xu},
-      year={2024},
-      eprint={2409.01256},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2409.01256}, 
-}"""
+    bibtex = """"""
     citation_plaintext, citation_bibitem = convert_citation(bibtex)
 
     # Generate a unique key for Bibitem (optional: can be based on authors, year, etc.)
