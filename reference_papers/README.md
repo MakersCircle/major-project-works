@@ -14,7 +14,7 @@ J. Fang, L. Li, K. Yang, Z. Zheng, J. Xue, and T. Chua, ``Cognitive Accident Pre
 ### 6. [Vision-Based Traffic Accident Detection and Anticipation: A Survey](Vision_Based_Traffic_Accident_Detection_and_Anticipation_survey.pdf)
 ```markdown
 \bibitem{}
-J. Fang, I. Qiao, J. Xue, and Z. Li, ``Vision-Based Traffic Accident Detection and Anticipation: A Survey,'' 2023, arXiv:2308.15985
+J. Fang, J. Qiao, J. Xue and Z. Li, ``Vision-Based Traffic Accident Detection and Anticipation: A Survey,'' in IEEE Transactions on Circuits and Systems for Video Technology, vol. 34, no. 4, pp. 1983-1999, April 2024, doi: 10.1109/TCSVT.2023.3307655.
 ```
 
 ### 7. [Real-time Accident Anticipation for Autonomous Driving Through Monocular Depth-Enhanced 3D Modeling](Real_time_Accident_Anticipation_for_Autonomous_Driving_Through.pdf)
