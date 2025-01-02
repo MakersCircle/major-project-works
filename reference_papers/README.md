@@ -23,9 +23,26 @@ J. Fang, J. Qiao, J. Xue and Z. Li, ``Vision-Based Traffic Accident Detection an
 H. Liao, Y. Li, C. Wang, S. Lai, Z. Li, Z. Bian, J. Lee, Z. Cui, G. Zhang, and C. Xu, ``Real-time Accident Anticipation for Autonomous Driving Through Monocular Depth-Enhanced 3D Modeling,'' 2024, arXiv:2409.01256
 ```
 
+
 ### 10. [DeepAccident: A Motion and Accident Prediction Benchmark for V2X Autonomous Driving](DeepAccident_A_Motion_and_Accident_Prediction_Benchmark.pdf)
 ```markdown
 \bibitem{}
 T. Wang, S. Kim, W. Ji, E. Xie, C. Ge, J. Chen, Z. Li, and P. Luo, ``DeepAccident: A Motion and Accident Prediction Benchmark for V2X Autonomous Driving,'' 2023, arXiv:2304.01168
 ```
 
+
+
+### 00. MMDetection
+```markdown
+@article{mmdetection,
+  title   = {{MMDetection}: Open MMLab Detection Toolbox and Benchmark},
+  author  = {Chen, Kai and Wang, Jiaqi and Pang, Jiangmiao and Cao, Yuhang and
+             Xiong, Yu and Li, Xiaoxiao and Sun, Shuyang and Feng, Wansen and
+             Liu, Ziwei and Xu, Jiarui and Zhang, Zheng and Cheng, Dazhi and
+             Zhu, Chenchen and Cheng, Tianheng and Zhao, Qijie and Li, Buyu and
+             Lu, Xin and Zhu, Rui and Wu, Yue and Dai, Jifeng and Wang, Jingdong
+             and Shi, Jianping and Ouyang, Wanli and Loy, Chen Change and Lin, Dahua},
+  journal= {arXiv preprint arXiv:1906.07155},
+  year={2019}
+}
+```

@@ -1,3 +1,6 @@
+
+/src/don/ZoeDepth/
+
 # Dataset
 datasets/*
 !datasets/README.md
