@@ -1,33 +1,76 @@
 # Reference Papers
-If paper is from arXiv, to generate the bibliography, copy the bibtex from arXiv website and use [arXiv2ieee.ipynb](../utils/arXiv2ieee.ipynb) from utils.
-
-### 1. 
 
 
 
-### 5. [Cognitive Accident Prediction in Driving Scenes: A Multimodality Benchmark](Cognitive_Accident_Prediction.pdf)
+### . [Cognitive Accident Prediction in Driving Scenes: A Multimodality Benchmark](Cognitive_Accident_Prediction.pdf)
 ```markdown
-\bibitem{}
-J. Fang, L. Li, K. Yang, Z. Zheng, J. Xue, and T. Chua, ``Cognitive Accident Prediction in Driving Scenes: A Multimodality Benchmark,'' 2023, arXiv:2212.09381
+@article{cognitive-prediction,
+  title={Cognitive accident prediction in driving scenes: A multimodality benchmark},
+  author={Fang, Jianwu and Li, Lei-Lei and Yang, Kuan and Zheng, Zhedong and Xue, Jianru and Chua, Tat-Seng},
+  journal={arXiv preprint arXiv:2212.09381},
+  year={2022}
+}
 ```
 
-### 6. [Vision-Based Traffic Accident Detection and Anticipation: A Survey](Vision_Based_Traffic_Accident_Detection_and_Anticipation_survey.pdf)
+### . [DADA-2000: Can Driving Accident be Predicted by Driver Attention? Analyzed by A Benchmark](DADA-2000_Can_Driving_Accident_be_Predicted_by_Driver_Attention.pdf)
+
 ```markdown
-\bibitem{}
-J. Fang, J. Qiao, J. Xue and Z. Li, ``Vision-Based Traffic Accident Detection and Anticipation: A Survey,'' in IEEE Transactions on Circuits and Systems for Video Technology, vol. 34, no. 4, pp. 1983-1999, April 2024, doi: 10.1109/TCSVT.2023.3307655.
+@inproceedings{fang2019dada,
+  title={Dada-2000: Can driving accident be predicted by driver attentionƒ analyzed by a benchmark},
+  author={Fang, Jianwu and Yan, Dingxin and Qiao, Jiahuan and Xue, Jianru and Wang, He and Li, Sen},
+  booktitle={2019 IEEE Intelligent Transportation Systems Conference (ITSC)},
+  pages={4303--4309},
+  year={2019},
+  organization={IEEE}
+}
 ```
 
-### 7. [Real-time Accident Anticipation for Autonomous Driving Through Monocular Depth-Enhanced 3D Modeling](Real_time_Accident_Anticipation_for_Autonomous_Driving_Through.pdf)
+### . [Real-time Accident Anticipation for Autonomous Driving Through Monocular Depth-Enhanced 3D Modeling](Real_time_Accident_Anticipation_for_Autonomous_Driving_Through.pdf)
 ```markdown
-\bibitem{}
-H. Liao, Y. Li, C. Wang, S. Lai, Z. Li, Z. Bian, J. Lee, Z. Cui, G. Zhang, and C. Xu, ``Real-time Accident Anticipation for Autonomous Driving Through Monocular Depth-Enhanced 3D Modeling,'' 2024, arXiv:2409.01256
+@article{monocular,
+  title={Real-time accident anticipation for autonomous driving through monocular depth-enhanced 3D modeling},
+  author={Liao, Haicheng and Li, Yongkang and Li, Zhenning and Bian, Zilin and Lee, Jaeyoung and Cui, Zhiyong and Zhang, Guohui and Xu, Chengzhong},
+  journal={Accident Analysis \& Prevention},
+  volume={207},
+  pages={107760},
+  year={2024},
+  publisher={Elsevier}
+}
 ```
+
+
+
+
+
+### . [Vision-Based Traffic Accident Detection and Anticipation: A Survey](Vision_Based_Traffic_Accident_Detection_and_Anticipation_survey.pdf)
+```markdown
+@ARTICLE{anticipationsurvey,
+  author={Fang, Jianwu and Qiao, Jiahuan and Xue, Jianru and Li, Zhengguo},
+  journal={IEEE Transactions on Circuits and Systems for Video Technology}, 
+  title={Vision-Based Traffic Accident Detection and Anticipation: A Survey}, 
+  year={2024},
+  volume={34},
+  number={4},
+  pages={1983-1999},
+  doi={10.1109/TCSVT.2023.3307655}
+}
+```
+
+
+
 
 
 ### 10. [DeepAccident: A Motion and Accident Prediction Benchmark for V2X Autonomous Driving](DeepAccident_A_Motion_and_Accident_Prediction_Benchmark.pdf)
 ```markdown
-\bibitem{}
-T. Wang, S. Kim, W. Ji, E. Xie, C. Ge, J. Chen, Z. Li, and P. Luo, ``DeepAccident: A Motion and Accident Prediction Benchmark for V2X Autonomous Driving,'' 2023, arXiv:2304.01168
+@inproceedings{deepaccident,
+  title={Deepaccident: A motion and accident prediction benchmark for v2x autonomous driving},
+  author={Wang, Tianqi and Kim, Sukmin and Wenxuan, Ji and Xie, Enze and Ge, Chongjian and Chen, Junsong and Li, Zhenguo and Luo, Ping},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={38},
+  number={6},
+  pages={5599--5606},
+  year={2024}
+}
 ```
 
 
