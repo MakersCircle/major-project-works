@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib
 from PIL import Image
 from pathlib import Path
+from time import time
 
 def colorize(value, vmin=None, vmax=None, cmap='gray_r', invalid_val=-99, invalid_mask=None, background_color=(128, 128, 128, 255), gamma_corrected=False, value_transform=None):
     """Converts a depth map to a color image.
@@ -64,17 +65,24 @@ def colorize(value, vmin=None, vmax=None, cmap='gray_r', invalid_val=-99, invali
 repo = "isl-org/ZoeDepth"
 
 # Zoe_K
+st = time()
 model_zoe_k = torch.hub.load(repo, "ZoeD_K", pretrained=True)
+print(f'Time for loading model: {time() - st}')
 
+st = time()
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 zoe = model_zoe_k.to(DEVICE).eval()
+print(f'Time for loading model to gpu: {time() - st}')
 
 root = Path().resolve().parent.parent
 
-image = Image.open(root / 'demo' / '00018.jpg').convert("RGB")  # load
+file_name = '00018'
+image = Image.open(root / 'sample' / f'{file_name}.jpg').convert("RGB")  # load
+st = time()
 depth = zoe.infer_pil(image)
+print(f'Time for inference: {time() - st}')
 
 colored = colorize(depth)
 
-fpath_colored = root / 'demo' / '00011_depth.png'
+fpath_colored = root / 'sample' / f'{file_name}_depth.png'
 Image.fromarray(colored).save(fpath_colored)

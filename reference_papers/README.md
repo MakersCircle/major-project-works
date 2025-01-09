@@ -105,7 +105,19 @@
 }
 ```
 
-
+### 10. [Toward explainable artificial intelligence for early anticipation of traffic accidents](Xai_for_accident_anticipation.pdf)
+```markdown
+@article{karim2022toward,
+  title={Toward explainable artificial intelligence for early anticipation of traffic accidents},
+  author={Karim, Muhammad Monjurul and Li, Yu and Qin, Ruwen},
+  journal={Transportation research record},
+  volume={2676},
+  number={6},
+  pages={743--755},
+  year={2022},
+  publisher={SAGE Publications Sage CA: Los Angeles, CA}
+}
+```
 
 
 
