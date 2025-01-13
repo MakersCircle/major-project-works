@@ -1,3 +1,4 @@
+import cv2
 import torch
 import numpy as np
 import matplotlib
@@ -62,27 +63,74 @@ def colorize(value, vmin=None, vmax=None, cmap='gray_r', invalid_val=-99, invali
         img = img.astype(np.uint8)
     return img
 
-repo = "isl-org/ZoeDepth"
 
-# Zoe_K
-st = time()
-model_zoe_k = torch.hub.load(repo, "ZoeD_K", pretrained=True)
-print(f'Time for loading model: {time() - st}')
+class MonocularDepth:
+    def __init__(self, device='cpu'):
+        model_repo = "isl-org/ZoeDepth"
+        depth_model = torch.hub.load(model_repo, "ZoeD_K", pretrained=True)
+        self.zoe_depth = depth_model.to(device).eval()
+        print("Depth Model Loaded...")
 
-st = time()
+    def find_frame_depth(self, frame, colourize):
+        depth_map = self.zoe_depth(frame)
+        if colourize:
+            return colorize(depth_map)
+        else:
+            return depth_map
+
+    def image_depth(self, image_path, output_dir, colourize=True):
+        image_path = Path(image_path)
+        output_dir = Path(output_dir)
+
+        print("Image Path:", image_path)
+        print("Output Path:", output_dir)
+
+        image = Image.open(image_path)
+        depth = self.find_frame_depth(image, colourize)
+
+        filename = image_path.stem
+        output_dir.mkdir(parents=True, exist_ok=True)
+
+        if colourize:
+            output_file = output_dir / f"{filename}_depth.png"
+            depth.save(output_file)
+        else:
+            output_file = output_dir / f"{filename}_depth.npy"
+            np.save(output_file, depth.detach().cpu().numpy())
+
+        print(f"Depth map saved to {output_file}")
+
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-zoe = model_zoe_k.to(DEVICE).eval()
-print(f'Time for loading model to gpu: {time() - st}')
-
+mv = MonocularDepth(device=DEVICE)
 root = Path().resolve().parent.parent
+file_name = '00018.jpg'
 
-file_name = '00018'
-image = Image.open(root / 'sample' / f'{file_name}.jpg').convert("RGB")  # load
-st = time()
-depth = zoe.infer_pil(image)
-print(f'Time for inference: {time() - st}')
+mv.image_depth(root / 'sample' / file_name, root / 'sample')
 
-colored = colorize(depth)
 
-fpath_colored = root / 'sample' / f'{file_name}_depth.png'
-Image.fromarray(colored).save(fpath_colored)
+
+# repo = "isl-org/ZoeDepth"
+#
+# # Zoe_K
+# st = time()
+# model_zoe_k = torch.hub.load(repo, "ZoeD_K", pretrained=True)
+# print(f'Time for loading model: {time() - st}')
+#
+# st = time()
+# DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+# zoe = model_zoe_k.to(DEVICE).eval()
+# print(f'Time for loading model to gpu: {time() - st}')
+#
+# root = Path().resolve().parent.parent
+#
+# file_name = '00018'
+# image = Image.open(root / 'sample' / f'{file_name}.jpg').convert("RGB")  # load
+# st = time()
+# depth = zoe.infer_pil(image)
+# print(f'Time for inference: {time() - st}')
+#
+# colored = colorize(depth)
+#
+# fpath_colored = root / 'sample' / f'{file_name}_depth.png'
+# Image.fromarray(colored).save(fpath_colored)
+
