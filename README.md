@@ -1,5 +1,10 @@
 # **Accident Anticipation Project - Setup and Guidelines**
 
+This repo is for the rough works for our major project.
+
+
+Find the reference papers used in this project [here](reference_papers/README.md)
+
 ## **Project Setup**
 
 ### **1. Clone the Repository**
