@@ -189,6 +189,8 @@ if __name__ == "__main__":
     mv = MonocularDepth(device=DEVICE)
     root = Path().resolve().parent.parent
 
+    start_time = time()
+
     # file_name = '00011.jpg'
     # mv.image_depth(root / 'sample' / file_name, root / 'sample', colourize=False)
 
@@ -198,7 +200,7 @@ if __name__ == "__main__":
     # Create depht map video from previously saved numpy file
     # create_video_from_depth(npy_file=root / 'sample' / '000001_depth.npy', output_video_path=root / 'sample' / '000001_depth_from_np.mp4')
 
-
+    print(f'Finished in {time() - start_time} seconds')
 
 
 
