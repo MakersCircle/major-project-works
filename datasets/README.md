@@ -12,8 +12,14 @@ Use links provided below to download dataset and place it here according to the 
 datasets
 ├── ccd
 │   ├── codes
-│   ├── Crash-1500
-│   ├── Normal
+│   ├── vgg16_features
+│   │   ├── negative
+│   │   ├── positive
+│   │   ├── test.txt
+│   │   └── train.txt 
+│   ├── videos
+│   │   ├── negative
+│   │   └── positive
 │   ├── README.md
 │   ├── Crash-1500.txt
 │   ├── YouTube_download.py
