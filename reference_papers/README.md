@@ -137,8 +137,6 @@
 
 
 
-
-
 ### . [DeepAccident: A Motion and Accident Prediction Benchmark for V2X Autonomous Driving](DeepAccident_A_Motion_and_Accident_Prediction_Benchmark.pdf)
 ```markdown
 @inproceedings{deepaccident,
