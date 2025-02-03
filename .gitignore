@@ -7,6 +7,7 @@ datasets/*
 
 # Models
 models/*
+yolov8m.pt
 !models/README.md
 
 #General gitignore template
