@@ -8,7 +8,7 @@ datasets/*
 # Models
 models/*
 !models/README.md
-
+yolov8m.pt
 #General gitignore template
 
 # Mac/OSX
