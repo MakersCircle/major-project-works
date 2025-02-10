@@ -1,5 +1,6 @@
 
 /src/don/ZoeDepth/
+ZoeD_M12_NK.pt
 
 # Dataset
 datasets/*
@@ -7,6 +8,7 @@ datasets/*
 
 # Models
 models/*
+yolov8m.pt
 !models/README.md
 yolov8m.pt
 #General gitignore template

@@ -1,3 +1,5 @@
+from typing import Optional
+
 import cv2
 import torch
 import matplotlib
@@ -99,10 +101,7 @@ class MonocularDepth:
 
     def find_frame_depth(self, frame, colourize):
         depth_map = self.zoe_depth.infer_pil(frame)
-        if colourize:
-            return colorize(depth_map)
-        else:
-            return depth_map
+        return colourize(depth_map) if colourize else depth_map
 
     def image_depth(self, image_path, output_dir, colourize=True):
         image_path = Path(image_path)
@@ -125,10 +124,12 @@ class MonocularDepth:
 
         print(f"Depth map saved to {output_file}")
 
-    def video_depth(self, video_path, output_dir, colourize=True, return_depth=False):
+    def video_depth(self, video_path, output_dir=None, colourize=False):
         video_path = Path(video_path)
-        output_dir = Path(output_dir)
-        output_dir.mkdir(parents=True, exist_ok=True)
+
+        if output_dir:
+            output_dir = Path(output_dir)
+            output_dir.mkdir(parents=True, exist_ok=True)
 
         video_capture = cv2.VideoCapture(str(video_path))
 
@@ -137,12 +138,13 @@ class MonocularDepth:
         frame_width = int(video_capture.get(cv2.CAP_PROP_FRAME_WIDTH))
         frame_height = int(video_capture.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
-        if colourize:
-            fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-            output_video_path = output_dir / f"{video_path.stem}_depth.mp4"
-            video_writer = cv2.VideoWriter(str(output_video_path), fourcc, frame_rate, (frame_width, frame_height))
-        else:
-            video_writer = None
+        if output_dir:
+            if colourize:
+                fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+                output_video_path = output_dir / f"{video_path.stem}_depth.mp4"
+                video_writer = cv2.VideoWriter(str(output_video_path), fourcc, frame_rate, (frame_width, frame_height))
+            else:
+                video_writer = None
 
         print(f"Processing video: {video_path}")
 
@@ -167,19 +169,21 @@ class MonocularDepth:
         # Release resources
         video_capture.release()
 
-        if return_depth:
-            return all_depths
+
 
         print(np.shape(all_depths))
 
-        if video_writer:
-            video_writer.release()
-            print(f"Depth map video saved to {output_video_path}")
-        else:
-            npy_output_path = output_dir / f"{video_path.stem}_depth.npy"
-            np.save(npy_output_path, np.array(all_depths))
-            print(f"Depth map numpy array saved to {npy_output_path}")
+        if output_dir:
+            if video_writer:
+                video_writer.release()
+                print(f"Depth map video saved to {output_video_path}")
+            else:
+                npy_output_path = output_dir / f"{video_path.stem}_depth.npy"
+                np.save(npy_output_path, np.array(all_depths))
+                print(f"Depth map numpy array saved to {npy_output_path}")
 
+
+        return all_depths
 
 
 
