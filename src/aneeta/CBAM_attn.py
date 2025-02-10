@@ -71,65 +71,64 @@ class CBAM(nn.Module):
         x = self.spatial_attention(x)
         return x
 
+
+# CBAM with Object, Depth, and Frame Features
 class CBAMSpatialAttentionModule(nn.Module):
     def __init__(self, feature_dim, depth_dim):
         super(CBAMSpatialAttentionModule, self).__init__()
         self.feature_dim = feature_dim
         self.depth_dim = depth_dim
 
-        # Linear layer to combine object features and depth features
-        self.fc = nn.Linear(feature_dim + depth_dim, feature_dim)
+        # Linear layer to combine object + depth + frame features
+        self.fc = nn.Linear(feature_dim * 2 + depth_dim, feature_dim)
 
-        # CBAM module for spatial attention
+        # CBAM module
         self.cbam = CBAM(in_channels=feature_dim)
 
-    def forward(self, f_obj, f_frame, f_depth):
+    def forward(self, F_obj, F_frame, F_depth):
         """
         Args:
-            f_obj: (batch_size, T, N, D) - Object features
-            f_frame: (batch_size, T, 1, D) - Frame-level features
-            f_depth: (batch_size, T, N, d) - Depth features
+            F_obj: (batch_size, T, N, D) - Object features
+            F_frame: (batch_size, T, 1, D) - Frame-level features
+            F_depth: (batch_size, T, N, d) - Depth features
         Returns:
             attention_output: (batch_size, T, N, D)
         """
+        N = F_obj.shape[2]
+        # Broadcast frame features to match object features
+        Fframe_expanded = F_frame.expand(-1, -1, N, -1)  # (batch_size, T, N, D)
 
-        print("f_obj shape:", f_obj.shape)
-        print("f_frame shape:", f_frame.shape)
+        # Combine object features, frame features, and depth features
+        combined_features = torch.cat([F_obj, Fframe_expanded, F_depth], dim=-1)  # (batch_size, T, N, 2D + d)
+        combined_features = self.fc(combined_features)  # Project to feature_dim (D)
 
-        f_frame = f_frame.unsqueeze(1) if f_frame.dim() == 2 else f_frame
+        # Reshape for CBAM input (batch_size, channels, height, width)
+        cbam_input = combined_features.permute(0, 3, 1, 2)  # (batch_size, D, T, N)
 
-        # Concatenate object features with frame features
-        combined_features = torch.cat([f_obj, f_frame], dim=2)  # (batch_size, 20, 4096)
+        # Apply CBAM
+        output = self.cbam(cbam_input)
 
-        # Apply CBAM attention
-        attention_features = self.cbam(combined_features)  # (batch_size, 20, 4096)
+        # Reshape back to (batch_size, T, N, D)
+        att_output = output.permute(0, 2, 3, 1)
 
-        # Remove the frame feature part to focus on objects
-        object_attention_features = attention_features[:, :-1, :]  # (batch_size, 19, 4096)
-
-        # Concatenate attention features with depth features
-        depth_fused_features = torch.cat([object_attention_features, f_depth], dim=-1)  # (batch_size, 19, 4101)
-
-        # Project back to 4096 dimensions
-        output = self.fc(depth_fused_features)  # (batch_size, 19, 4096)
-
-        return output
+        return att_output
 
 
 # Example usage
-batch_size = 2
-T = 50  # Number of frames
-N = 19  # Number of objects
-D = 4096  # Feature dimension
-d = 5  # Depth feature dimension
+#batch_size = 2
+#T = 50   # Number of frames
+#N = 19  # Number of objects
+#D = 4096  # Feature dimension
+#d = 16  # Depth feature dimension
 
 # Dummy data
-F_object = torch.rand(batch_size, T, N, D)       # Object features
-F_frame = torch.rand(batch_size, T, 1, D)   # Frame features
-F_depth = torch.rand(batch_size, T, N, d)   # Depth features
+#F_obj = torch.rand(batch_size, T, N, D)       # Object features
+#F_frame = torch.rand(batch_size, T, 1, D)   # Frame features
+#F_depth = torch.rand(batch_size, T, N, d)   # Depth features
 
-# Initialize and forward pass
-cbam_attention = CBAMSpatialAttentionModule(D, d)
-attention_output = cbam_attention(F_object, F_frame, F_depth)
+# Apply CBAM with frame features
+#cbam_attention = CBAMSpatialAttentionModule(D, d)
+#attention_output = cbam_attention(F_obj, F_frame, F_depth)
 
-print("Attention Output Shape:", attention_output.shape)  # (batch_size, T, N, D)
+#print("Attention Output Shape:", attention_output.shape)  # (batch_size, T, N, D)
+
