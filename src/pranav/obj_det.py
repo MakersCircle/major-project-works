@@ -5,7 +5,7 @@ from ultralytics import YOLO
 
 class ObjectDetection:
     def __init__(self):
-        self.model = YOLO("yolov8m.pt")
+        self.model = YOLO("src\pranav\yolov8m.pt")
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.model.to(self.device)  # Move model to correct device
 
